@@ -1,5 +1,6 @@
 import os
 import queue
+import random
 import threading
 from datetime import datetime
 
@@ -112,16 +113,18 @@ class store_data(threading.Thread):
         # 创建文件夹
         if not folder_util.is_exist_folder(folder_path):
             folder_util.create_folder(folder_path)
-
-        if file_type ==File_Types.TXT.value:
-            file_path = folder_path+file_type
-            data = data +" " +datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-            folder_util.create_file_txt(file_path=file_path,data=data)
-        elif file_type ==File_Types.CSV.value:
-            pass
-        else:
-            # 文件格式有误
-            logger.error(f"存储的文件类型配置{file_type}有误！,应为下列一种{[type for type in File_Types]}")
+        match file_type:
+            case File_Types.TXT.value:
+                # txt
+                file_path = folder_path+file_type
+                data = data +" " +datetime.now().strftime('%Y-%m-%d/%H:%M:%S.%f')[:-3]
+                folder_util.create_file_txt(file_path=file_path,data=data)
+            case File_Types.CSV.value:
+                # csv
+                pass
+            case _:
+                # 文件格式有误
+                logger.error(f"存储的文件类型配置{file_type}有误！,应为下列一种{[type for type in File_Types]}")
 
 class communication(threading.Thread):
     """
@@ -251,9 +254,11 @@ class communication(threading.Thread):
         logger.info(f"{self.category}串口{str(self.config['Serial']['port'])}开始发送数据")
         while self.running:  # 循环接收数据
             data = ""
-            date = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-            logger.info(f"{self.category}串口{str(self.config['Serial']['port'])}发送数据: {date}")
-            self.ser.write(date.encode())
+            # date = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            # 生成一个指定范围内的浮点数，例如 1.5 到 5.5
+            data =str(random.uniform(-100, 100))
+            logger.info(f"{self.category}串口{str(self.config['Serial']['port'])}发送数据: {data}")
+            self.ser.write(data.encode())
             time.sleep(float(self.config['Serial']['delay']))
 
     def receive(self):

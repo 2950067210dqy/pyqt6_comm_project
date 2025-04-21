@@ -36,30 +36,28 @@ class communication_root():
         # 通讯方式有udp tcp com
         self.comm_method = str(self.config['Method']['communication'])
         # 通讯方式为COM串口通讯
-        if self.comm_method==Comm_Methods.COM.value:
-            # 创建存储文件夹
-            folder_path = str(self.config['Storage']['fold_path'])+str(self.config['Serial']['receive_port'])+"/"
-            folder_util.create_folder(folder_path)
-            self.com_init(save_pre_path=folder_path)
-
-        elif self.comm_method==Comm_Methods.UDP.value:
-
-            # 创建存储文件夹
-            folder_path = str(self.config['Storage']['fold_path']) + str(self.config['UDP']['host']) + "/"
-            folder_util.create_folder(folder_path)
-            # 通讯方式为UDP通讯
-            self.udp_init(save_pre_path=folder_path)
-        elif self.comm_method==Comm_Methods.TCP.value:
-
-            # 创建存储文件夹
-            folder_path = str(self.config['Storage']['fold_path']) + str(self.config['TCP']['host']) + "/"
-            folder_util.create_folder(folder_path)
-            # 通讯方式为TCP串口通讯
-            self.tcp_init(save_pre_path=folder_path)
-        else:
-            # 通讯方式有误
-            logger.error(f"通讯方式配置{self.comm_method}有误！,应为下列一种{[method for method in Comm_Methods]}")
-            return
+        match self.comm_method:
+            case Comm_Methods.COM.value:
+                # 创建存储文件夹
+                folder_path = str(self.config['Storage']['fold_path'])+str(self.config['Serial']['receive_port'])+"/"
+                folder_util.create_folder(folder_path)
+                self.com_init(save_pre_path=folder_path)
+            case Comm_Methods.UDP.value:
+                # 创建存储文件夹
+                folder_path = str(self.config['Storage']['fold_path']) + str(self.config['UDP']['host']) + "/"
+                folder_util.create_folder(folder_path)
+                # 通讯方式为UDP通讯
+                self.udp_init(save_pre_path=folder_path)
+            case Comm_Methods.TCP.value:
+                # 创建存储文件夹
+                folder_path = str(self.config['Storage']['fold_path']) + str(self.config['TCP']['host']) + "/"
+                folder_util.create_folder(folder_path)
+                # 通讯方式为TCP串口通讯
+                self.tcp_init(save_pre_path=folder_path)
+            case _:
+                # 通讯方式有误
+                logger.error(f"通讯方式配置{self.comm_method}有误！,应为下列一种{[method for method in Comm_Methods]}")
+                return
         pass
     def com_init(self,save_pre_path=""):
         """
@@ -84,19 +82,20 @@ class communication_root():
         串口线程通讯开始
         :return:
         """
-        # 通讯方式为COM串口通讯
-        if self.comm_method == Comm_Methods.COM.value:
-            self.com_start()
-        elif self.comm_method ==  Comm_Methods.UDP.value:
-            # 通讯方式为UDP通讯
-            self.udp_start()
-        elif self.comm_method ==  Comm_Methods.TCP.value:
-            # 通讯方式为TCP串口通讯
-            self.tcp_start()
-        else:
-            # 通讯方式有误
-            logger.error(f"通讯方式配置{self.comm_method}有误！,应为下列一种{[method  for method in Comm_Methods]}")
-            return
+        match self.comm_method:
+            case Comm_Methods.COM.value:
+                # 通讯方式为COM串口通讯
+                self.com_start()
+            case Comm_Methods.UDP.value:
+                # 通讯方式为UDP通讯
+                self.udp_start()
+            case Comm_Methods.TCP.value:
+                # 通讯方式为TCP串口通讯
+                self.tcp_start()
+            case _:
+                # 通讯方式有误
+                logger.error(f"通讯方式配置{self.comm_method}有误！,应为下列一种{[method  for method in Comm_Methods]}")
+                return
         pass
 
     def com_start(self):
@@ -119,5 +118,10 @@ class communication_root():
         :return:
         """
         pass
-
+    def test(self):
+        """
+        tcp通讯开始
+        :return:
+        """
+        pass
     pass
