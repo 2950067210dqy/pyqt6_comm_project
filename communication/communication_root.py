@@ -39,18 +39,18 @@ class communication_root():
         match self.comm_method:
             case Comm_Methods.COM.value:
                 # 创建存储文件夹
-                folder_path = str(self.config['Storage']['fold_path'])+str(self.config['Serial']['receive_port'])+"/"
+                folder_path = str(self.config['Storage']['fold_path'])+str(self.config['Storage']['port_prefix'])+str(self.config['Serial']['receive_port'])+"/"
                 folder_util.create_folder(folder_path)
                 self.com_init(save_pre_path=folder_path)
             case Comm_Methods.UDP.value:
                 # 创建存储文件夹
-                folder_path = str(self.config['Storage']['fold_path']) + str(self.config['UDP']['host']) + "/"
+                folder_path = str(self.config['Storage']['fold_path'])+str(self.config['Storage']['port_prefix']) + str(self.config['UDP']['host']) + "/"
                 folder_util.create_folder(folder_path)
                 # 通讯方式为UDP通讯
                 self.udp_init(save_pre_path=folder_path)
             case Comm_Methods.TCP.value:
                 # 创建存储文件夹
-                folder_path = str(self.config['Storage']['fold_path']) + str(self.config['TCP']['host']) + "/"
+                folder_path = str(self.config['Storage']['fold_path'])+str(self.config['Storage']['port_prefix']) + str(self.config['TCP']['host']) + "/"
                 folder_util.create_folder(folder_path)
                 # 通讯方式为TCP串口通讯
                 self.tcp_init(save_pre_path=folder_path)

@@ -109,14 +109,14 @@ class store_data(threading.Thread):
         # 获取年 第几周 第几天
         year, week_number, weekday = time_util.get_current_week_info()
         file_type = str(self.config['Storage']['file_type']).lower()
-        folder_path = self.save_pre_path+str(year)+"/"+f"{str(week_number)}week"+"/"+str(weekday)+"."
+        folder_path = self.save_pre_path+str(year)+"/"+f"{str(week_number)}week"+"/"
         # 创建文件夹
         if not folder_util.is_exist_folder(folder_path):
             folder_util.create_folder(folder_path)
         match file_type:
             case File_Types.TXT.value:
                 # txt
-                file_path = folder_path+file_type
+                file_path = folder_path+str(weekday)+"."+file_type
                 data = data +" " +datetime.now().strftime('%Y-%m-%d/%H:%M:%S.%f')[:-3]
                 folder_util.create_file_txt(file_path=file_path,data=data)
             case File_Types.CSV.value:
