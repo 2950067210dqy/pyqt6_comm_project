@@ -13,7 +13,7 @@ def receive_serial_port_data():
     :return:无
     """
 
-    communication_root_obj = communication_root()
+    communication_root_obj = communication_root(data_type="charts")
     logger.info("start serial port communication!")
     communication_root_obj.start()
 def set_envir():
@@ -30,7 +30,7 @@ if __name__ == '__main__':
         rotation="00:00",
         retention="30 days",
         enqueue=True,
-        format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {name} : {module}:{line} | {message}"
+        format="{time:YYYY-MM-DD HH:mm:ss}  | {level} | {name} : {module}:{line} | {message}"
     )
     logger.info(f"{'-' * 30}start{'-' * 30}")
 
