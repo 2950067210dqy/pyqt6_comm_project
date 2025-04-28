@@ -1,0 +1,16 @@
+2025-04-27 08:19:00  | INFO | __main__ : main:35 | ------------------------------start------------------------------
+2025-04-27 08:19:00  | INFO | enu.enviroment : enviroment:40 | 串口通讯当前项目的工作路径为：D:\WorkSpace\pythonProjectAnimal_message
+2025-04-27 08:19:00  | INFO | enu.enviroment : enviroment:52 | 串口通讯-已存在环境变量HOST_COMPUTER_DATA_STORAGE_LOC
+2025-04-27 08:19:00  | INFO | communication.communication_root : communication_root:30 | communication_root通讯配置文件读取成功。
+2025-04-27 08:19:00  | INFO | communication.util.folder_util : folder_util:28 | 目录 './data/port_COM3/' 创建成功或已存在。
+2025-04-27 08:19:00  | INFO | communication.communication_com : communication_com:148 | communication_com_communication通讯配置文件读取成功。
+2025-04-27 08:19:00  | ERROR | communication.communication_com : communication_com:168 | receive串口COM3连接--当前设备无可用的端口
+2025-04-27 08:19:00  | ERROR | communication.communication_com : communication_com:192 | receive串口COM3连接--当前设备所设置端口COM3错误！
+2025-04-27 08:19:00  | ERROR | communication.communication_com : communication_com:194 | receive串口COM3实例化失败！
+2025-04-27 08:19:00  | INFO | communication.communication_com : communication_com:148 | communication_com_communication通讯配置文件读取成功。
+2025-04-27 08:19:00  | ERROR | communication.communication_com : communication_com:168 | send串口COM5连接--当前设备无可用的端口
+2025-04-27 08:19:00  | ERROR | communication.communication_com : communication_com:192 | send串口COM5连接--当前设备所设置端口COM5错误！
+2025-04-27 08:19:00  | ERROR | communication.communication_com : communication_com:194 | send串口COM5实例化失败！
+2025-04-27 08:19:00  | INFO | communication.communication_com : communication_com:42 | communication_com_store_data通讯配置文件读取成功。
+2025-04-27 08:19:00  | INFO | __main__ : main:17 | start serial port communication!
+2025-04-27 08:19:00  | INFO | communication.communication_com : communication_com:58 | 存储数据线程开始工作
